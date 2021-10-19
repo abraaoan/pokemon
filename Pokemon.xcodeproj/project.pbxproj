@@ -24,6 +24,7 @@
 		A12B817B271E61F000F4A393 /* Sprites.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12B817A271E61F000F4A393 /* Sprites.swift */; };
 		A12B817D271E62FB00F4A393 /* Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12B817C271E62FB00F4A393 /* Type.swift */; };
 		A12B8182271E696200F4A393 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12B8181271E696200F4A393 /* HomeCollectionViewCell.swift */; };
+		A139625D271EEA8200E1D7CC /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139625C271EEA8200E1D7CC /* ResultViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		A12B817A271E61F000F4A393 /* Sprites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprites.swift; sourceTree = "<group>"; };
 		A12B817C271E62FB00F4A393 /* Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Type.swift; sourceTree = "<group>"; };
 		A12B8181271E696200F4A393 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
+		A139625C271EEA8200E1D7CC /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,10 +154,10 @@
 		A12B816A271E5C1D00F4A393 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A12B8172271E5FD700F4A393 /* Pokemon.swift */,
-				A12B8174271E600500F4A393 /* Api.swift */,
-				A12B8176271E604000F4A393 /* Result.swift */,
 				A12B8178271E614900F4A393 /* Ability.swift */,
+				A12B8174271E600500F4A393 /* Api.swift */,
+				A12B8172271E5FD700F4A393 /* Pokemon.swift */,
+				A12B8176271E604000F4A393 /* Result.swift */,
 				A12B817A271E61F000F4A393 /* Sprites.swift */,
 				A12B817C271E62FB00F4A393 /* Type.swift */,
 			);
@@ -182,6 +184,7 @@
 		A12B817E271E63B100F4A393 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				A139625C271EEA8200E1D7CC /* ResultViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				A12B817D271E62FB00F4A393 /* Type.swift in Sources */,
 				A12B8179271E614900F4A393 /* Ability.swift in Sources */,
 				A12B8182271E696200F4A393 /* HomeCollectionViewCell.swift in Sources */,
+				A139625D271EEA8200E1D7CC /* ResultViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,7 +531,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.abraaoan.Pokemon;
+				PRODUCT_BUNDLE_IDENTIFIER = com.abraaoan.PokemonII;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -546,7 +550,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.abraaoan.Pokemon;
+				PRODUCT_BUNDLE_IDENTIFIER = com.abraaoan.PokemonII;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
