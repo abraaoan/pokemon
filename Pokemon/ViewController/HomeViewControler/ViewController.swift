@@ -12,32 +12,70 @@ class ViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var spinnerView: UIView!
     
-    var results: [ResultViewModel]? {
-        didSet {
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-                self.spinnerView.isHidden = true
-            }
-        }
-    }
+    let services = Services.shared
+    
+    var results: [ResultViewModel]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.spinnerView.isHidden = false
+        
+        services.getPokemons { [weak self] pokemos, hasError in
+            if !hasError {
+                self?.results = pokemos
+                DispatchQueue.main.async {
+                    self?.collectionView.reloadData()
+                    self?.spinnerView.isHidden = true
+                }
+            }
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.spinnerView.isHidden = false
-        let services = Services()
-        
-        services.getPokemons { pokemos, hasError in
-            self.results = pokemos
+        DispatchQueue.main.async { [weak self] in
+            self?.collectionView.reloadData()
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+    }
+    
+    func shouldLoadMoreResults(_ indexPath:IndexPath ) -> Bool {
+        
+        guard let quantity = results?.count else { return false }
+        if quantity == 0 { return false }
+        
+        if indexPath.row == (quantity - 3) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func loadNextResult() {
+        
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async { [weak self] in
+            self?.services.getMorePokemons { [weak self] pokemos, hasError in
+                if !hasError {
+                    pokemos?.forEach({ self?.results?.append($0) })
+                    DispatchQueue.main.async { [weak self] in
+                        self?.collectionView.reloadData()
+                    }
+                }
+            }
+        }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.collectionView.reloadData()
+        }
     }
 }
 
@@ -65,13 +103,33 @@ extension ViewController: UICollectionViewDataSource {
             }
         }
         
+        // Favorite icons
+        if let id = poke.pokemon?.id {
+            cell.icLikeView.isHidden = !Favorite.shared.isFavorite(id: "\(id)")
+        }
+        
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if self.shouldLoadMoreResults(indexPath) {
+            self.loadNextResult()
+        }
     }
 }
 
 extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(identifier: "DetailViewController")
+        
+        if let vc = viewController as? DetailViewController {
+            guard let poke = results?[indexPath.row] else { return }
+            
+            vc.pokemon = poke.pokemon
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {

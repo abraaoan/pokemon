@@ -13,6 +13,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var pokeImageView: UIImageView!
     @IBOutlet weak var pokeId: UILabel!
     @IBOutlet weak var pokeName: UILabel!
+    @IBOutlet weak var icLikeView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,6 +35,13 @@ class HomeCollectionViewCell: UICollectionViewCell {
         let mask = CAShapeLayer()
         mask.path = path.cgPath
         self.pokeImageView.layer.mask = mask
+        
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        self.pokeImageView.image = nil
         
     }
     

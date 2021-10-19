@@ -15,6 +15,8 @@ class Services {
     private let pokemonsURL = "https://pokeapi.co/api/v2/pokemon/?limit=20&offset=20"
     private let abRequest = ABRequest()
     
+    var lastResult: Api?
+    
     func getPokemons(completion: (([ResultViewModel]?, _ hasError: Bool) -> ())? = nil) {
         abRequest.send(url: pokemonsURL) { (data) in
             
@@ -32,6 +34,51 @@ class Services {
             
             do {
                 let api = try decoder.decode(Api.self, from: jsonData)
+                self.lastResult = api
+                
+                let group = DispatchGroup()
+                var results = [ResultViewModel]()
+                
+                api.results.forEach { result in
+                    
+                    group.enter()
+                    let resultViewModel = ResultViewModel(result: result)
+                    
+                    resultViewModel.onDetailLoad = {
+                        results.append(resultViewModel)
+                        group.leave()
+                    }
+                }
+                
+                group.notify(queue: DispatchQueue.global()) {
+                    completion?(results, false)
+                }
+                
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func getMorePokemons(completion: (([ResultViewModel]?, _ hasError: Bool) -> ())? = nil) {
+        
+        guard let url = lastResult?.next else {
+            completion?(nil, true)
+            return
+        }
+        
+        abRequest.send(url: url) { (data) in
+            
+            guard let jsonData = data else{
+                completion?(nil, true)
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            
+            do {
+                let api = try decoder.decode(Api.self, from: jsonData)
+                self.lastResult = api
                 
                 let group = DispatchGroup()
                 var results = [ResultViewModel]()
