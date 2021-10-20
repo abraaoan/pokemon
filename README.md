@@ -13,6 +13,8 @@ You may use any layout.
 - After that I explore how it's works and start think how made a App with it.
 - So I open my old by gold Sketch(v.48) and made some Ideas:
 
+![alt text](https://github.com/abraaoan/pokemon/blob/main/printSketch.png?raw=true)
+
 - Now I have all I needed to start coding.
 
 # Design Pattern
