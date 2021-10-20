@@ -68,7 +68,7 @@
 		A12B8158271E5B7D00F4A393 /* PokemonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokemonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A12B815C271E5B7D00F4A393 /* PokemonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonUITests.swift; sourceTree = "<group>"; };
 		A12B815E271E5B7D00F4A393 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A12B816D271E5C7200F4A393 /* ABRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABRequest.swift; sourceTree = SOURCE_ROOT; };
+		A12B816D271E5C7200F4A393 /* ABRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ABRequest.swift; path = Pokemon/Services/ABRequest.swift; sourceTree = SOURCE_ROOT; };
 		A12B816F271E5D2800F4A393 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		A12B8172271E5FD700F4A393 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		A12B8174271E600500F4A393 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
