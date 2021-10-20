@@ -18,25 +18,103 @@ class PokemonUITests: XCTestCase {
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
+    func testNavigation() throws{
+        
         let app = XCUIApplication()
         app.launch()
-
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let collectionView = app.collectionViews.element
+        // wait elemet show up
+        wait(forElement: collectionView, timeout: 5)
+        
+        // Test scroll and Pagination
+        collectionView.swipeUp()
+        sleep(1)
+        collectionView.swipeUp()
+        sleep(1)
+        collectionView.swipeUp()
+        sleep(1)
+        collectionView.swipeUp()
+        sleep(1)
+        collectionView.swipeUp()
+        collectionView.swipeUp()
+        sleep(1)
+        collectionView.swipeUp()
+        collectionView.swipeUp()
+        collectionView.swipeUp()
+        
+        sleep(2)
+        
+        // Try find a cell
+        let cellIndex = getVisibleCellsQuantity() / 2
+        let cell = collectionView.children(matching: .cell).element(boundBy: cellIndex)
+        cell.tap()
+        
+        // DetailView
+        let tableView = app.tables.element
+        for _ in 0..<3 {
+            tableView.swipeUp()
+            sleep(1)
+        }
+        
+        for _ in 0..<3 {
+            tableView.swipeDown()
+            sleep(1)
+        }
+        
+        sleep(2)
+        
+        // Like or Dislike
+        let closeButton = app.buttons["btnLike"]
+        closeButton.tap()
+        
+        sleep(4)
+        
+        // Back
+        let back = app.navigationBars.buttons.element(boundBy: 0)
+        back.tap()
+        
+        sleep(4)
+        
+        // ScrollBack
+        for _ in 0..<5 {
+            collectionView.swipeDown()
+            sleep(1)
+        }
+        
+        
     }
+}
 
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
+extension XCTestCase {
+    func wait(forElement element: XCUIElement, timeout: TimeInterval) {
+        let predicate = NSPredicate(format: "exists == 1")
+
+        // This will make the test runner continously evalulate the
+        // predicate, and wait until it matches.
+        expectation(for: predicate, evaluatedWith: element)
+        waitForExpectations(timeout: timeout)
+    }
+    
+    func getVisibleCellsQuantity()-> Int {
+        var visibleCount = 0
+        var isInitialCellVisible = true
+        let cells = XCUIApplication().collectionViews.cells
+        
+        for i in 0...cells.count {
+            let cell = cells.element(boundBy: i)
+            if cell.exists, !cell.isHittable {
+                if i == 0 || !isInitialCellVisible {
+                    isInitialCellVisible = false
+                } else {
+                    return visibleCount
+                }
+            } else {
+                isInitialCellVisible = true
+                visibleCount += 1
             }
         }
+        return visibleCount
     }
+    
 }

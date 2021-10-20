@@ -112,7 +112,7 @@ extension DetailViewController: UITableViewDataSource {
          
             cell.lblHeight.text  = "\(pokemon?.height ?? 0)"
             cell.lblWeight.text  = "\(pokemon?.weight ?? 0)"
-            cell.lblSpecies.text = "-"
+            cell.lblSpecies.text = pokemon?.species?.name
             cell.lblType.text    = pokemon?.types?.first?.type.name
             cell.lblAbility.text = pokemon?.abilities?.first?.ability.name
             cell.lblNumber.text  = "\(pokemon?.id ?? 0)"

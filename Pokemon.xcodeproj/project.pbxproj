@@ -29,6 +29,7 @@
 		A12B817D271E62FB00F4A393 /* Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12B817C271E62FB00F4A393 /* Type.swift */; };
 		A12B8182271E696200F4A393 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12B8181271E696200F4A393 /* HomeCollectionViewCell.swift */; };
 		A139625D271EEA8200E1D7CC /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139625C271EEA8200E1D7CC /* ResultViewModel.swift */; };
+		A1E049F52720752700B65702 /* Specie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E049F42720752700B65702 /* Specie.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		A12B817C271E62FB00F4A393 /* Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Type.swift; sourceTree = "<group>"; };
 		A12B8181271E696200F4A393 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		A139625C271EEA8200E1D7CC /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
+		A1E049F42720752700B65702 /* Specie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Specie.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +189,7 @@
 				A12B817A271E61F000F4A393 /* Sprites.swift */,
 				A12B817C271E62FB00F4A393 /* Type.swift */,
 				A124DA7A271F79200011F8F0 /* Favorite.swift */,
+				A1E049F42720752700B65702 /* Specie.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				A12B8179271E614900F4A393 /* Ability.swift in Sources */,
 				A12B8182271E696200F4A393 /* HomeCollectionViewCell.swift in Sources */,
 				A139625D271EEA8200E1D7CC /* ResultViewModel.swift in Sources */,
+				A1E049F52720752700B65702 /* Specie.swift in Sources */,
 				A124DA74271F6D7C0011F8F0 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
