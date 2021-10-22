@@ -96,11 +96,7 @@ extension ViewController: UICollectionViewDataSource {
         cell.pokeId.text = poke.pokeId
         
         if let url = poke.mainImage {
-            Services.shared.downloadImage(url: url) { image, data in
-                DispatchQueue.main.async {
-                    cell.pokeImageView.image = image
-                }
-            }
+            cell.pokeImageView.getImage(url: url)
         }
         
         // Favorite icons

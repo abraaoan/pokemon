@@ -7,6 +7,8 @@
 
 import UIKit
 
+let imageCache = NSCache<NSString, NSData>()
+
 class ABRequest {
     
     var currentUrl: String?
@@ -49,10 +51,17 @@ class ABRequest {
             return
         }
         
+        let cacheId = url.absoluteString as NSString
+        
+        if let imageData = imageCache.object(forKey:cacheId) {
+            completion(UIImage(data: imageData as Data))
+        }
+        
         let session = URLSession.shared
         let dataTask = session.dataTask(with: url) { (data, response, error) in
             
             if error == nil, let data = data {
+                imageCache.setObject(data as NSData, forKey: cacheId)
                 completion(UIImage(data: data))
             } else {
                 completion(nil);
